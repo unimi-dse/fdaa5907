@@ -5,10 +5,17 @@ ui <- fluidPage(
   
   # App title ----
   titlePanel("Ethereum price"),
-    
+  
+  sidebarPanel(  
+    fluidRow(
+      h3("Actual Ehtereum price: "),
+      h2(textOutput("price")),
+      actionButton("reload", "Reload")
+    )
+  ),
   sidebarLayout(
     sidebarPanel(
-      selectInput(inputId = "option", h3("Select box"), 
+      selectInput(inputId = "option", h3("Select option"), 
                   choices = list("Price" = 1, "Moving Average" = 2,
                                  "Forecast" = 3), selected = 1)
     ),
@@ -16,7 +23,7 @@ ui <- fluidPage(
     mainPanel(
       
       # Output: Histogram ----
-      plotOutput(outputId = "distPlot")
+     #plotOutput(outputId = "distPlot")
       
     )
   )
