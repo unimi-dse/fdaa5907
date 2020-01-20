@@ -6,6 +6,18 @@ library(readr)
 library(forecast)
 library(zoo)
 
+library(rvest)
+library(xml2)
+library(rvest)
+library(stringr)
+
+url <- "https://ethereumprice.org/live/"
+webpage <- read_html(url)
+title_html <- html_nodes(webpage, "div#coin-price")
+title <- html_text(title_html)
+price <- str_replace_all(title, "\n","")
+print(price)
+
 eth <- Quandl("BITFINEX/ETHUSD", api_key="-GNJxjPntak8s-AxpM5o")
 
 # Define server logic required to draw a histogram ----
