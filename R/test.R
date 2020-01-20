@@ -26,15 +26,14 @@ smDF <- data.frame("Date"=eth$Date,"MA"=rollmean(startDF$Price, k = 13, fill = N
 
 # Automated forecasting using an exponential model
 fit <- ets(startDF$Price)
-df1 <- data.frame("Date"=eth$Date,"fit"=fit)
+plot(fit)
+#df1 <- data.frame("Date"=eth$Date,"fit"=fit)
 
 # Automated forecasting using an ARIMA model00
-#fit2 <- auto.arima(startDF$Price)
+fit2 <- auto.arima(startDF$Price)
+plot(fit2)
 #df2 <- data.frame("Date"=eth$Date,"fit2"=fit2)
 
 ggplot() + 
   geom_line(aes(x=Date, y=Price, colour="Ethereum price"), startDF) +  
-  geom_line(aes(x=Date, y=MA, colour="Moving average"), smDF) +
-  #(aes(x=Date, y=AR, colour="AR"), arDF) +
-  geom_line(aes(x=Date, y=fit, colour="fit"), df1) 
-  #geom_line(aes(x=Date, y=fit2, colour="fit2"), df2)
+  geom_line(aes(x=Date, y=MA, colour="Moving average"), smDF) 
