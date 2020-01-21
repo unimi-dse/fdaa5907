@@ -19,5 +19,8 @@ runFun <- function(){
   }
   
   print("Packages installed")
-
+  
+ 
+  # run app -----------------------------------------------------------------
+  runApp( shinyApp(ui, server), launch.browser = T )
 }
