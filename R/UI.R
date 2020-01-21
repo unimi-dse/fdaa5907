@@ -1,10 +1,10 @@
 library(shiny)
 library(shinyjs)
 
-# Define UI for app that draws a histogram ----
+# Define UI for app
 ui <- fluidPage(
   
-  # App title ----
+  # App title
   titlePanel(h1("Ethereum Price Index")),
   
   sidebarPanel(  
@@ -26,10 +26,10 @@ ui <- fluidPage(
   ),
   
   
-    # Main panel for displaying outputs ----
+    # Main panel for displaying outputs
     mainPanel(
       
-      # Output: Histogram ----
+      # Output: plot
      plotOutput(outputId = "distPlot")
       
   )

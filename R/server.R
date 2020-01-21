@@ -7,11 +7,16 @@ library(forecast)
 library(zoo)
 library(shinyjs)
 
+library(devtools)
+
 library(rvest)
 library(xml2)
 library(rvest)
 library(stringr)
 
+#' Get Ethereum index data
+#'
+#' @return The data of all Ehtereum index
 getEth <- function(){
   return(eth <- Quandl("BITFINEX/ETHUSD", api_key="-GNJxjPntak8s-AxpM5o"))
 }
@@ -23,6 +28,9 @@ setClass(Class="pricePerc",
          )
 )
 
+#' Get actual Price and Percentage of change of Ethereum Index
+#'
+#' @return A class formed by Price and Percentage of change
 getPricePerc <- function(){
   url <- "https://ethereumprice.org/live/"
   webpage <- read_html(url)
@@ -35,6 +43,13 @@ getPricePerc <- function(){
   return(new("pricePerc",price=price,perc=perc))
 }
 
+#' Set the input value in the correct output widget of the UI
+#'
+#' @param price Actual price of Ehtereum index
+#' @param perc Actual percentage of change in the Ethereum price index
+#' @param output The output widget of the UI
+#' @examples
+#' setOutPricePerc("$164,37", "(1,23)", output)
 setOutPricePerc <- function(price,perc, output){
   output$price <- renderText(price)
   output$percent <- renderText(perc)
@@ -43,6 +58,12 @@ setOutPricePerc <- function(price,perc, output){
   output$hour <- renderText(ts)
 }
 
+#' Calculate the range, given the number of observation, for the forecast
+#' #'
+#' @param obs Selected number of observation
+#' @param n Total number of observation
+#' @examples
+#' calculateRange(300,1367)
 calculateRange <- function(obs,n){
   div <- n/obs
   num <- n/div
@@ -50,7 +71,8 @@ calculateRange <- function(obs,n){
   return(tot)
 }
 
-# Define server logic required to draw a histogram ----
+#' Define the server logic
+#' #'
 server <- function(input, output) {
   
   p <- getPricePerc()
@@ -94,9 +116,6 @@ server <- function(input, output) {
       start <- calculateRange(obs,end)
       ts1 <- ts1 <- ts(eth$Last[start:end], start = 1, frequency = 1, class = "ts")
       plot(forecast(auto.arima(ts1)), sub = paste("Forecast with ",obs," observation"))
-      # Automated forecasting using an exponential model
-      #fit <- ets(startDF$Price)
-      #plot(fit)
     }
   })
 }
