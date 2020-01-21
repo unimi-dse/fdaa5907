@@ -24,6 +24,8 @@ Install the R package.
 devtools::install_github('unimi-dse/fdaa5907')
 ```
 
+Now the necessary libraries will be installed (if they are not already)
+You can skip (enter 3) the updating of the packages. 
 
 ## Running the app
 
@@ -31,6 +33,22 @@ Load the package
 
 ```
 require(ethereum)
+```
+If you want to check if the packages is correctly installed run:
+
+```
+testFun()
+```
+If it works, it will return:
+
+```
+[1] "Yes, it works!"
+```
+
+You can run the app with the command:
+
+```
+runFun()
 ```
 
 ## Built With
