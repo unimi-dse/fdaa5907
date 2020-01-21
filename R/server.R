@@ -12,44 +12,57 @@ library(xml2)
 library(rvest)
 library(stringr)
 
-eth <- Quandl("BITFINEX/ETHUSD", api_key="-GNJxjPntak8s-AxpM5o")
-url <- "https://ethereumprice.org/live/"
-webpage <- read_html(url)
-title_html <- html_nodes(webpage, "div#coin-price")
-perc_html <- html_nodes(webpage, "span#coin-changePercent")
-perc <- html_text(perc_html)
-print(perc)
-title <- html_text(title_html)
-price <- str_replace_all(title, "\n","")
-print(price)
+getEth <- function(){
+  return(eth <- Quandl("BITFINEX/ETHUSD", api_key="-GNJxjPntak8s-AxpM5o"))
+}
 
-# Define server logic required to draw a histogram ----
-server <- function(input, output) {
-  
+setClass(Class="pricePerc",
+         representation(
+           price="character",
+           perc="character"
+         )
+)
+
+getPricePerc <- function(){
+  url <- "https://ethereumprice.org/live/"
+  webpage <- read_html(url)
+  title_html <- html_nodes(webpage, "div#coin-price")
+  perc_html <- html_nodes(webpage, "span#coin-changePercent")
+  perc <- html_text(perc_html)
+  title <- html_text(title_html)
+  price <- str_replace_all(title, "\n","")
+  print("Data retrieved")
+  return(new("pricePerc",price=price,perc=perc))
+}
+
+setOutPricePerc <- function(price,perc, output){
   output$price <- renderText(price)
   output$percent <- renderText(perc)
   tm <- Sys.time()
   ts <- format(tm, format = "%Y-%m-%d %H:%M:%S", tz = "", usetz = FALSE)
   output$hour <- renderText(ts)
+}
+
+calculateRange <- function(obs,n){
+  div <- n/obs
+  num <- n/div
+  tot <- n-num
+  return(tot)
+}
+
+# Define server logic required to draw a histogram ----
+server <- function(input, output) {
+  
+  p <- getPricePerc()
+  eth <- getEth()
+  setOutPricePerc(p@price,p@perc, output)
   
   observeEvent(input$reload, {
-    eth <- Quandl("BITFINEX/ETHUSD", api_key="-GNJxjPntak8s-AxpM5o")
-    url <- "https://ethereumprice.org/live/"
-    webpage <- read_html(url)
-    title_html <- html_nodes(webpage, "div#coin-price")
-    perc_html <- html_nodes(webpage, "span#coin-changePercent")
-    perc <- html_text(perc_html)
-    print(perc)
-    title <- html_text(title_html)
-    price <- str_replace_all(title, "\n","")
-    print(price)  
     
-    output$price <- renderText(price)
-    output$percent <- renderText(perc)
-    output$hour <- renderText(Sys.time())
-    tm <- Sys.time()
-    ts <- format(tm, format = "%Y-%m-%d %H:%M:%S", tz = "", usetz = FALSE)
-    output$hour <- renderText(ts)
+    eht <- getEth()
+    p <- getPricePerc()
+    setOutPricePerc(p@price,p@perc,output)
+    
   })
   
   output$distPlot <- renderPlot({
@@ -77,11 +90,9 @@ server <- function(input, output) {
     else if(input$option==3){
       shinyjs::show(id = "slider1")
       obs <- input$slider1
-      n <- nrow(eth)
-      div <- n/obs
-      num <- n/div
-      tot <- n-num
-      ts1 <- ts1 <- ts(eth$Last[tot:n], start = 1, frequency = 1, class = "ts")
+      end <- nrow(eth)
+      start <- calculateRange(obs,end)
+      ts1 <- ts1 <- ts(eth$Last[start:end], start = 1, frequency = 1, class = "ts")
       plot(forecast(auto.arima(ts1)), sub = paste("Forecast with ",obs," observation"))
       # Automated forecasting using an exponential model
       #fit <- ets(startDF$Price)
