@@ -25,9 +25,13 @@ devtools::install_github('unimi-dse/fdaa5907')
 ```
 
 
-## Running the tests
+## Running the app
 
-Explain how to run the automated tests for this system
+Load the package
+
+```
+require(Ethereum)
+```
 
 ## Built With
 
