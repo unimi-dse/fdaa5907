@@ -1,9 +1,9 @@
-Package: Ethereum
+Package: ethereum
 Type: Package
 Title: Ethereum Index Price
 Version: 1.1.0
 Author: Tommaso Pessina
-Maintainer: tom.pessina@gmail.com
+Maintainer: Tommaso Pessina <tom.pessina@gmail.com>
 Description: This app show the actual price of Ethereum and all the data of the index.
     It is also possible to run a forecast (and select the number of observation) on the index. 
 License: GPL-3

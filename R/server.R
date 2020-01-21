@@ -44,7 +44,6 @@ getPricePerc <- function(){
 }
 
 #' Set the input value in the correct output widget of the UI
-#'
 #' @param price Actual price of Ehtereum index
 #' @param perc Actual percentage of change in the Ethereum price index
 #' @param output The output widget of the UI
