@@ -51,6 +51,14 @@ You can run the app with the command:
 runFun()
 ```
 
+### Documentation
+
+It's possible to see the documentation (how it works) of the developed functions, by typing:
+
+```
+?getEth()
+```
+
 ## Built With
 
 * [Shiny](https://shiny.rstudio.com/) - The app framework used
