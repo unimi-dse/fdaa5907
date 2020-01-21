@@ -1,18 +1,55 @@
-library(ggplot2)
-library(scales)
-library(Quandl)
-library(dplyr)
-library(readr)
-library(forecast)
-library(zoo)
-library(shinyjs)
 
-library(devtools)
+runFun <- function(){
+  
+  dependencies <- c("shiny", "shinyjs", "ggplot2", "scales", "Quandl", "dplyr",
+                    "readr", "forecast", "zoo", "rvest","xml2","stringr")
+  
+  for (x in dependencies) {
+    if(x %in% rownames(installed.packages()) == T) {
+      library(x, character.only = T)
+    } else {
+      install.packages(x)
+      library(x, character.only = T)
+      Sys.sleep(5)
+    }
+  }
 
-library(rvest)
-library(xml2)
-library(rvest)
-library(stringr)
+
+# Define UI for app
+ui <- fluidPage(
+  
+  # App title
+  titlePanel(h1("Ethereum Price Index")),
+  
+  sidebarPanel(  
+    
+    fluidRow(
+      
+      h3("Actual Ehtereum price: ",textOutput("price")),
+      
+      h4(textOutput("percent"))),
+    
+    fluidRow(actionButton("reload", "Reload"),
+             h5("Last update: ",textOutput("hour"))),
+    
+    fluidRow(selectInput(inputId = "option", h3("Select option"), 
+                         choices = list("Price" = 1, "Moving Average" = 2,
+                                        "Forecast" = 3), selected = 1)),
+    sliderInput("slider1", h4("Number of observations"),
+                min = 10, max = 500, value = 200), useShinyjs()
+  ),
+  
+  
+  # Main panel for displaying outputs
+  mainPanel(
+    
+    # Output: plot
+    plotOutput(outputId = "distPlot")
+    
+  )
+)
+
+#------SERVER SIDE---------
 
 #' Get Ethereum index data
 #'
@@ -117,4 +154,9 @@ server <- function(input, output) {
       plot(forecast(auto.arima(ts1)), sub = paste("Forecast with ",obs," observation"))
     }
   })
+}
+
+# run app -----------------------------------------------------------------
+runApp( shinyApp(ui, server), launch.browser = T )
+
 }
