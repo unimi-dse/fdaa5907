@@ -1,4 +1,15 @@
-
+library(ggplot2)
+library(scales)
+library(Quandl)
+library(dplyr)
+library(readr)
+library(forecast)
+library(zoo)
+library(shinyjs)
+library(devtools)
+library(xml2)
+library(rvest)
+library(stringr)
 
 #' Get Ethereum index data
 #'
