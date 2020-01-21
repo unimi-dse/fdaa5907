@@ -1,5 +1,5 @@
 #' @export
-test <- function() {
+testFun <- function() {
   print("Yes, it works!")
 }
 
