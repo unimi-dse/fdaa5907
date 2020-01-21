@@ -30,7 +30,7 @@ devtools::install_github('unimi-dse/fdaa5907')
 Load the package
 
 ```
-require(Ethereum)
+require(ethereum)
 ```
 
 ## Built With
