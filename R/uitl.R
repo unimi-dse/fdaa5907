@@ -6,7 +6,7 @@ testFun <- function() {
 }
 
 #' @export
-installPackages <- function()
+installPack <- function()
 {
   packages  =c("shiny", "shinyjs", "ggplot2", "scales", "Quandl", "dplyr", "readr", "forecast", "zoo", "rvest", "xml2", "stringr")
   if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
