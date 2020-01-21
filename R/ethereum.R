@@ -1,4 +1,5 @@
 
+#' @export
 runFun <- function(){
   
   dependencies <- c("shiny", "shinyjs", "ggplot2", "scales", "Quandl", "dplyr",
