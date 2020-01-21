@@ -4,6 +4,8 @@ library(shinyjs)
 # Define UI for app
 ui <- fluidPage(
   
+  useShinyjs(),
+    
   # App title
   titlePanel(h1("Ethereum Price Index")),
   
