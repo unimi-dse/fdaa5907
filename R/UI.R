@@ -4,8 +4,6 @@ library(shinyjs)
 # Define UI for app
 ui <- fluidPage(
   
-  useShinyjs(),
-    
   # App title
   titlePanel(h1("Ethereum Price Index")),
   
@@ -23,8 +21,9 @@ ui <- fluidPage(
     fluidRow(selectInput(inputId = "option", h3("Select option"), 
                 choices = list("Price" = 1, "Moving Average" = 2,
                                "Forecast" = 3), selected = 1)),
-    sliderInput("slider1", h4("Number of observations"),
-                min = 10, max = 500, value = 200), useShinyjs()
+    hidden(sliderInput("slider1", h4("Number of observations (only for forecast)"),
+                min = 10, max = 500, value = 200)
+    )
   ),
   
   

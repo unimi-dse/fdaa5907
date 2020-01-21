@@ -5,18 +5,33 @@ testFun <- function() {
 }
 
 #' @export
+# Check, Install and Load the required library
 installPack <- function()
 {
   packages  =c("shiny", "shinyjs", "ggplot2", "scales", "Quandl", "dplyr", "readr", "forecast", "zoo", "rvest", "xml2", "stringr")
   if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
     install.packages(setdiff(packages, rownames(installed.packages())),repos = "http://cran.us.r-project.org")
-  }else
+  }else{
     print("everything up to date")
+  }
+  library(ggplot2)
+  library(scales)
+  library(Quandl)
+  library(dplyr)
+  library(readr)
+  library(forecast)
+  library(zoo)
+  library(shinyjs)
+  library(shiny)
+  library(devtools)
+  library(xml2)
+  library(rvest)
+  library(stringr)
+  print("Library correctly loaded")
 }
 
 #' @export
 runFun <- function(){
-  library(shiny)
   # run app -----------------------------------------------------------------
   runApp( shinyApp(ui, server), launch.browser = T )
 }

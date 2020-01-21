@@ -86,7 +86,7 @@ server <- function(input, output) {
   output$distPlot <- renderPlot({
     
     if(input$option==1){
-      shinyjs::hide(id = "slider1")
+      #shinyjs::hide(id = "slider1")
       ggplot(eth, aes(x = eth$Date, y = eth$Last)) +
         labs(x = "Date", y = "Price") +
         geom_line() +
@@ -96,7 +96,7 @@ server <- function(input, output) {
     }
     
     else if(input$option==2){
-      shinyjs::hide(id = "slider1")
+      #shinyjs::hide(id = "slider1")
       smDF <- data.frame("Date"=eth$Date,"MA"=rollmean(eth$Last, k = 13, fill = NA))
       ggplot() + 
         labs(x = "Date", y = "Price") + 
@@ -106,7 +106,7 @@ server <- function(input, output) {
         labs(title = "Moving Average Chart", subtitle = "Daily data")
     }
     else if(input$option==3){
-      shinyjs::show(id = "slider1")
+      #shinyjs::show(id = "slider1")
       obs <- input$slider1
       end <- nrow(eth)
       start <- calculateRange(obs,end)
