@@ -1,6 +1,10 @@
+#' @export
+test <- function() {
+  print("Yes, it works!")
+}
 
 #' @export
-installRequiredPackages <- function(){
+runFun <- function(){
   
   dependencies <- c("shiny", "shinyjs", "ggplot2", "scales", "Quandl", "dplyr",
                     "readr", "forecast", "zoo", "rvest","xml2","stringr")
