@@ -1,6 +1,8 @@
 library(shiny)
 library(shinyjs)
 
+useShinyjs()
+
 # Define UI for app
 ui <- fluidPage(
   
