@@ -2,4 +2,4 @@
 
 export(runFun)
 export(testFun)
-export(installPack)
+

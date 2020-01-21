@@ -1,20 +1,20 @@
+library(shiny)
 
 #' @export
 testFun <- function() {
   print("Yes, it works!")
 }
 
-#' @export
-installPack <- function()
-{
-  packages  =c("shiny", "shinyjs", "ggplot2", "scales", "Quandl", "dplyr", "readr", "forecast", "zoo", "rvest", "xml2", "stringr","tidyverse")
-  if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
-    install.packages(setdiff(packages, rownames(installed.packages())),repos = "http://cran.us.r-project.org")
-  }else
-    print("everything up to date")
-  for(x in c)
-    library(x)
-}
+#installPack <- function()
+#{
+#  packages  =c("shiny", "shinyjs", "ggplot2", "scales", "Quandl", "dplyr", "readr", "forecast", "zoo", "rvest", "xml2", "stringr","tidyverse")
+#  if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
+ #   install.packages(setdiff(packages, rownames(installed.packages())),repos = "http://cran.us.r-project.org")
+#  }else
+#    print("everything up to date")
+#  for(x in c)
+#    library(x)
+#}
 
 #' @export
 runFun <- function(){
