@@ -26,7 +26,6 @@ installPack <- function()
   library(rvest)
   library(stringr)
   print("Library correctly loaded")
-  }
 }
 
 #' @export
