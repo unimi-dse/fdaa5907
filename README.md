@@ -16,6 +16,14 @@ Install the R package "devtools" if not installed
 install.packages("devtools")
 ```
 
+Install (if it are not already) and load the "shiny" package
+
+```
+install.packages("shiny")
+library(shiny)
+```
+
+
 ### Installing
 
 Install the R package.
