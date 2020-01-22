@@ -1,3 +1,4 @@
+library(shiny)
 
 #' @export
 testFun <- function() {
@@ -20,7 +21,6 @@ installPack <- function()
   library(readr)
   library(forecast)
   library(zoo)
-  library(shiny)
   library(devtools)
   library(xml2)
   library(rvest)
