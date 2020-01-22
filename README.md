@@ -6,7 +6,7 @@ This app show the actual Ethereum price and the chart of all Ethereum data. In a
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
@@ -16,9 +16,17 @@ Install the R package "devtools" if not installed
 install.packages("devtools")
 ```
 
+Install (if it are not already) and load the "shiny" package
+
+```
+install.packages("shiny")
+library(shiny)
+```
+
+
 ### Installing
 
-Install the R package.
+Install the R package
 
 ```
 devtools::install_github('unimi-dse/fdaa5907')
@@ -48,11 +56,12 @@ runFun()
 
 ### Documentation and Test
 
-If you want to check if the packages is correctly installed run:
+If you want to check if packages are installed properly, run:
 
 ```
 testFun()
 ```
+
 If it works, it will return:
 
 ```
