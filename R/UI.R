@@ -1,3 +1,4 @@
+library(shiny)s
 
 # Define UI for app
 ui <- fluidPage(
