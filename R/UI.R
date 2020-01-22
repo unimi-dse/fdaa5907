@@ -20,9 +20,8 @@ ui <- fluidPage(
     fluidRow(selectInput(inputId = "option", h3("Select option"), 
                 choices = list("Price" = 1, "Moving Average" = 2,
                                "Forecast" = 3), selected = 1)),
-    hidden(sliderInput("slider1", h4("Number of observations (only for forecast)"),
+    sliderInput("slider1", h4("Number of observations (only for forecast)"),
                 min = 10, max = 500, value = 200)
-    )
   ),
   
   
