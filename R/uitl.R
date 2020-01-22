@@ -13,8 +13,7 @@ installPack <- function()
     install.packages(setdiff(packages, rownames(installed.packages())),repos = "http://cran.us.r-project.org")
   }else{
     print("everything up to date")
-  }
-  library(ggplot2)
+    library(ggplot2)
   library(scales)
   library(Quandl)
   library(dplyr)
@@ -27,6 +26,7 @@ installPack <- function()
   library(rvest)
   library(stringr)
   print("Library correctly loaded")
+  }
 }
 
 #' @export
