@@ -3,6 +3,8 @@
 # Define UI for app
 ui <- shiny::fluidPage(
   
+  shinyjs::useShinyjs(),
+  
   # App title
   shiny::titlePanel(shiny::h1("Ethereum Price Index")),
   

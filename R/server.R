@@ -75,6 +75,10 @@ server <- function(input, output) {
   eth <- getEth()
   setOutPricePerc(p@price,p@perc, output)
   
+  shiny::observe({
+    shinyjs::toggleState("slider1", input$option == 3)
+  })
+  
   shiny::observeEvent(input$reload, {
     
     eht <- getEth()
