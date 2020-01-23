@@ -4,23 +4,23 @@
 ui <- shiny::fluidPage(
   
   # App title
-  shiny::titlePanel(h1("Ethereum Price Index")),
+  shiny::titlePanel(shiny::h1("Ethereum Price Index")),
   
   shiny::sidebarPanel(  
     
     shiny::fluidRow(
       
-      h3("Actual Ehtereum price: ",shiny::textOutput("price")),
+      shiny::h3("Actual Ehtereum price: ",shiny::textOutput("price")),
    
-      h4(shiny::textOutput("percent"))),
+      shiny::h4(shiny::textOutput("percent"))),
     
     shiny::fluidRow(shiny::actionButton("reload", "Reload"),
-             h5("Last update: ",shiny::textOutput("hour"))),
+                    shiny::h5("Last update: ",shiny::textOutput("hour"))),
     
-    shiny::fluidRow(shiny::selectInput(inputId = "option", h3("Select option"), 
+    shiny::fluidRow(shiny::selectInput(inputId = "option", shiny::h3("Select option"), 
                 choices = list("Price" = 1, "Moving Average" = 2,
                                "Forecast" = 3), selected = 1)),
-    shiny::sliderInput("slider1", h4("Number of observations (only for forecast)"),
+    shiny::sliderInput("slider1", shiny::h4("Number of observations (only for forecast)"),
                 min = 10, max = 500, value = 200)
   ),
   
