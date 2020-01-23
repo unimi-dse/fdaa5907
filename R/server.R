@@ -90,7 +90,7 @@ server <- function(input, output) {
       ggplot2::ggplot(eth, ggplot2::aes(x = eth$Date, y = eth$Last)) +
         ggplot2::labs(x = "Date", y = "Price", title = "Ethereum Price Chart", subtitle = "Daily data") +
         ggplot2::geom_line() +
-        ggplot2::scale_x_date(labels = date_format("%Y-%m-%d"))+ 
+        ggplot2::scale_x_date(labels = scales::date_format("%Y-%m-%d"))+ 
         ggplot2::theme(plot.title = element_text(face = "bold"))
     }
     
