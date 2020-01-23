@@ -108,7 +108,7 @@ server <- function(input, output) {
       obs <- input$slider1
       end <- nrow(eth)
       start <- calculateRange(obs,end)
-      ts1 <- ts(eth$Last[start:end], start = 1, frequency = 1, class = "ts")
+      ts1 <- stats::ts(eth$Last[start:end], start = 1, frequency = 1, class = "ts")
       plot(forecast::forecast(forecast::auto.arima(ts1)), sub = paste("Forecast with ",obs," observation"))
     }
   })
