@@ -15,7 +15,7 @@
 #'
 #' @return The data of all Ehtereum index
 getEth <- function(){
-  return(eth <- Quandl("BITFINEX/ETHUSD", api_key="-GNJxjPntak8s-AxpM5o"))
+  return(eth <- Quandl::Quandl("BITFINEX/ETHUSD", api_key="-GNJxjPntak8s-AxpM5o"))
 }
 
 setClass(Class="pricePerc",
@@ -30,12 +30,12 @@ setClass(Class="pricePerc",
 #' @return A class formed by Price and Percentage of change
 getPricePerc <- function(){
   url <- "https://ethereumprice.org/live/"
-  webpage <- read_html(url)
-  title_html <- html_nodes(webpage, "div#coin-price")
-  perc_html <- html_nodes(webpage, "span#coin-changePercent")
-  perc <- html_text(perc_html)
-  title <- html_text(title_html)
-  price <- str_replace_all(title, "\n","")
+  webpage <- xml2::read_html(url)
+  title_html <- rvest::html_nodes(webpage, "div#coin-price")
+  perc_html <- rvest::html_nodes(webpage, "span#coin-changePercent")
+  perc <- rvest::html_text(perc_html)
+  title <- rvest::html_text(title_html)
+  price <- stringr::str_replace_all(title, "\n","")
   print("Data retrieved")
   return(new("pricePerc",price=price,perc=perc))
 }
@@ -47,8 +47,8 @@ getPricePerc <- function(){
 #' @examples
 #' setOutPricePerc("$164,37", "(1,23)", output)
 setOutPricePerc <- function(price,perc, output){
-  output$price <- renderText(price)
-  output$percent <- renderText(perc)
+  output$price <- shiny::renderText(price)
+  output$percent <- shiny::renderText(perc)
   tm <- Sys.time()
   ts <- format(tm, format = "%Y-%m-%d %H:%M:%S", tz = "", usetz = FALSE)
   output$hour <- renderText(ts)
@@ -75,7 +75,7 @@ server <- function(input, output) {
   eth <- getEth()
   setOutPricePerc(p@price,p@perc, output)
   
-  observeEvent(input$reload, {
+  shiny::observeEvent(input$reload, {
     
     eht <- getEth()
     p <- getPricePerc()
@@ -83,34 +83,32 @@ server <- function(input, output) {
     
   })
   
-  output$distPlot <- renderPlot({
+  output$distPlot <- shiny::renderPlot({
     
     if(input$option==1){
       #shinyjs::hide(id = "slider1")
-      ggplot(eth, aes(x = eth$Date, y = eth$Last)) +
-        labs(x = "Date", y = "Price") +
-        geom_line() +
-        scale_x_date(labels = date_format("%Y-%m-%d"))+ 
-        theme(plot.title = element_text(face = "bold")) +
-        labs(title = "Ethereum Price Chart", subtitle = "Daily data")
+      ggplot2::ggplot(eth, aes(x = eth$Date, y = eth$Last)) +
+        ggplot2::labs(x = "Date", y = "Price", title = "Ethereum Price Chart", subtitle = "Daily data") +
+        ggplot2::geom_line() +
+        ggplot2::scale_x_date(labels = date_format("%Y-%m-%d"))+ 
+        ggplot2::theme(plot.title = element_text(face = "bold"))
     }
     
     else if(input$option==2){
       #shinyjs::hide(id = "slider1")
-      smDF <- data.frame("Date"=eth$Date,"MA"=rollmean(eth$Last, k = 13, fill = NA))
-      ggplot() + 
-        labs(x = "Date", y = "Price") + 
-        geom_line(aes(x=eth$Date, y=eth$Last, colour="Ethereum price"), eth) +  
-        geom_line(aes(x=Date, y=MA, colour="Moving average"), smDF) + 
-        theme(plot.title = element_text(face = "bold")) +
-        labs(title = "Moving Average Chart", subtitle = "Daily data")
+      smDF <- data.frame("Date"=eth$Date,"MA"=zoo::rollmean(eth$Last, k = 13, fill = NA))
+      ggplot2::ggplot() + 
+        ggplot2::labs(x = "Date", y = "Price",title = "Moving Average Chart", subtitle = "Daily data") + 
+        ggplot2::geom_line(aes(x=eth$Date, y=eth$Last, colour="Ethereum price"), eth) +  
+        ggplot2::geom_line(aes(x=Date, y=MA, colour="Moving average"), smDF) + 
+        ggplot2::theme(plot.title = element_text(face = "bold"))
     }
     else if(input$option==3){
       #shinyjs::show(id = "slider1")
       obs <- input$slider1
       end <- nrow(eth)
       start <- calculateRange(obs,end)
-      ts1 <- ts1 <- ts(eth$Last[start:end], start = 1, frequency = 1, class = "ts")
+      ts1 <- ts(eth$Last[start:end], start = 1, frequency = 1, class = "ts")
       plot(forecast(auto.arima(ts1)), sub = paste("Forecast with ",obs," observation"))
     }
   })

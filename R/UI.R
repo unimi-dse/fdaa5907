@@ -1,35 +1,35 @@
-library(shiny)
+#library(shiny)
 
 # Define UI for app
-ui <- fluidPage(
+ui <- shiny::fluidPage(
   
   # App title
-  titlePanel(h1("Ethereum Price Index")),
+  shiny::titlePanel(h1("Ethereum Price Index")),
   
-  sidebarPanel(  
+  shiny::sidebarPanel(  
     
-    fluidRow(
+    shiny::fluidRow(
       
-      h3("Actual Ehtereum price: ",textOutput("price")),
+      h3("Actual Ehtereum price: ",shiny::textOutput("price")),
    
-      h4(textOutput("percent"))),
+      h4(shiny::textOutput("percent"))),
     
-    fluidRow(actionButton("reload", "Reload"),
-             h5("Last update: ",textOutput("hour"))),
+    shiny::fluidRow(shiny::actionButton("reload", "Reload"),
+             h5("Last update: ",shiny::textOutput("hour"))),
     
-    fluidRow(selectInput(inputId = "option", h3("Select option"), 
+    shiny::fluidRow(shiny::selectInput(inputId = "option", h3("Select option"), 
                 choices = list("Price" = 1, "Moving Average" = 2,
                                "Forecast" = 3), selected = 1)),
-    sliderInput("slider1", h4("Number of observations (only for forecast)"),
+    shiny::sliderInput("slider1", h4("Number of observations (only for forecast)"),
                 min = 10, max = 500, value = 200)
   ),
   
   
     # Main panel for displaying outputs
-    mainPanel(
+  shiny::mainPanel(
       
       # Output: plot
-     plotOutput(outputId = "distPlot")
+    shiny::plotOutput(outputId = "distPlot")
       
   )
 )
