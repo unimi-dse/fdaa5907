@@ -91,7 +91,7 @@ server <- function(input, output) {
         ggplot2::labs(x = "Date", y = "Price", title = "Ethereum Price Chart", subtitle = "Daily data") +
         ggplot2::geom_line() +
         ggplot2::scale_x_date(labels = scales::date_format("%Y-%m-%d"))+ 
-        ggplot2::theme(plot.title = element_text(face = "bold"))
+        ggplot2::theme(plot.title = ggplot2::element_text(face = "bold"))
     }
     
     else if(input$option==2){
@@ -101,7 +101,7 @@ server <- function(input, output) {
         ggplot2::labs(x = "Date", y = "Price",title = "Moving Average Chart", subtitle = "Daily data") + 
         ggplot2::geom_line(ggplot2::aes(x=eth$Date, y=eth$Last, colour="Ethereum price"), eth) +  
         ggplot2::geom_line(ggplot2::aes(x=Date, y=MA, colour="Moving average"), smDF) + 
-        ggplot2::theme(plot.title = element_text(face = "bold"))
+        ggplot2::theme(plot.title = ggplot2element_text(face = "bold"))
     }
     else if(input$option==3){
       #shinyjs::show(id = "slider1")
