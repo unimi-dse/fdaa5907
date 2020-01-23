@@ -87,7 +87,7 @@ server <- function(input, output) {
     
     if(input$option==1){
       #shinyjs::hide(id = "slider1")
-      ggplot2::ggplot(eth, aes(x = eth$Date, y = eth$Last)) +
+      ggplot2::ggplot(eth, ggplot2::aes(x = eth$Date, y = eth$Last)) +
         ggplot2::labs(x = "Date", y = "Price", title = "Ethereum Price Chart", subtitle = "Daily data") +
         ggplot2::geom_line() +
         ggplot2::scale_x_date(labels = date_format("%Y-%m-%d"))+ 
@@ -99,8 +99,8 @@ server <- function(input, output) {
       smDF <- data.frame("Date"=eth$Date,"MA"=zoo::rollmean(eth$Last, k = 13, fill = NA))
       ggplot2::ggplot() + 
         ggplot2::labs(x = "Date", y = "Price",title = "Moving Average Chart", subtitle = "Daily data") + 
-        ggplot2::geom_line(aes(x=eth$Date, y=eth$Last, colour="Ethereum price"), eth) +  
-        ggplot2::geom_line(aes(x=Date, y=MA, colour="Moving average"), smDF) + 
+        ggplot2::geom_line(ggplot2::aes(x=eth$Date, y=eth$Last, colour="Ethereum price"), eth) +  
+        ggplot2::geom_line(ggplot2::aes(x=Date, y=MA, colour="Moving average"), smDF) + 
         ggplot2::theme(plot.title = element_text(face = "bold"))
     }
     else if(input$option==3){
