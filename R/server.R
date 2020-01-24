@@ -84,7 +84,7 @@ server <- function(input, output) {
     eht <- getEth()
     p <- getPricePerc()
     setOutPricePerc(p@price,p@perc,output)
-    
+    shinyalert::shinyalert("Okay!", "Data updated correctly.", type = "success")
   })
   
   output$distPlot <- shiny::renderPlot({
