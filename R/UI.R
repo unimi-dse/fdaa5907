@@ -1,4 +1,3 @@
-#library(shiny)
 
 '%>%'  <- magrittr::`%>%`
 
@@ -9,13 +8,13 @@ ui <- shiny::fluidPage(
   shinyalert::useShinyalert(),
   
   # App title
-  shiny::titlePanel(shiny::HTML("<h1>Ethereum Price Index</h1>")),
+  shiny::titlePanel(shiny::HTML("<font color='red'><h1>Ethereum (Cryptocurrency) Price Index</h1></font>")),
   
   shiny::sidebarPanel(  
     
     shiny::fluidRow(
       
-      shiny::h3("Actual Ehtereum price: ",shiny::textOutput("price")),
+      shiny::h3("Actual Ether price: ",shiny::textOutput("price")),
    
       shiny::h4(shiny::textOutput("percent"))),
     
@@ -30,10 +29,7 @@ ui <- shiny::fluidPage(
     
   ),
   
-  
-  
-  
-    # Main panel for displaying outputs
+  # Main panel for displaying outputs
   shiny::mainPanel(
       
       # Output: plot
@@ -73,9 +69,6 @@ ui <- shiny::fluidPage(
                   </div>
                 ')
       
-  ),
-  
-    
-    
+  )
   
 )

@@ -1,16 +1,3 @@
-#library(ggplot2)
-#library(shiny)
-#library(scales)
-#library(Quandl) 
-#library(dplyr)
-#library(readr)
-#library(forecast)
-#library(zoo)
-#library(devtools)
-#library(xml2)
-#library(rvest)
-#library(stringr)
-
 #' Get Ethereum index data
 #'
 #' @return The data of all Ehtereum index
@@ -18,6 +5,7 @@ getEth <- function(){
   return(eth <- Quandl::Quandl("BITFINEX/ETHUSD", api_key="-GNJxjPntak8s-AxpM5o"))
 }
 
+#' Create a class for get the returned value of the function getPricePerc
 setClass(Class="pricePerc",
          representation(
            price="character",
@@ -90,25 +78,22 @@ server <- function(input, output) {
   output$distPlot <- shiny::renderPlot({
     
     if(input$option==1){
-      #shinyjs::hide(id = "slider1")
       ggplot2::ggplot(eth, ggplot2::aes(x = eth$Date, y = eth$Last)) +
-        ggplot2::labs(x = "Date", y = "Price", title = "Ethereum Price Chart", subtitle = "Daily data") +
+        ggplot2::labs(x = "Date", y = "Price", title = "Ether Price Chart", subtitle = "Daily data") +
         ggplot2::geom_line() +
         ggplot2::scale_x_date(labels = scales::date_format("%Y-%m-%d"))+ 
         ggplot2::theme(plot.title = ggplot2::element_text(face = "bold"))
     }
     
     else if(input$option==2){
-      #shinyjs::hide(id = "slider1")
       smDF <- data.frame("Date"=eth$Date,"MA"=zoo::rollmean(eth$Last, k = 13, fill = NA))
       ggplot2::ggplot() + 
         ggplot2::labs(x = "Date", y = "Price",title = "Moving Average Chart", subtitle = "Daily data") + 
-        ggplot2::geom_line(ggplot2::aes(x=eth$Date, y=eth$Last, colour="Ethereum price"), eth) +  
+        ggplot2::geom_line(ggplot2::aes(x=eth$Date, y=eth$Last, colour="Ether price"), eth) +  
         ggplot2::geom_line(ggplot2::aes(x=Date, y=MA, colour="Moving average"), smDF) + 
         ggplot2::theme(plot.title = ggplot2::element_text(face = "bold"))
     }
     else if(input$option==3){
-      #shinyjs::show(id = "slider1")
       obs <- input$slider1
       end <- nrow(eth)
       start <- calculateRange(obs,end)
