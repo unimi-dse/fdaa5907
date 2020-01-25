@@ -8,7 +8,7 @@ ui <- shiny::fluidPage(
   shinyalert::useShinyalert(),
   
   # App title
-  shiny::titlePanel(shiny::HTML("<font color='red'><h1>Ethereum (Cryptocurrency) Price Index</h1></font>")),
+  shiny::titlePanel("Ethereum (Cryptocurrency) price Index"),
   
   shiny::sidebarPanel(  
     
