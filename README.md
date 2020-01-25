@@ -27,12 +27,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing
 
-Install the R package "devtools" if not installed
-
-```
-install.packages("devtools")
-```
-
 Install the R package
 
 ```
