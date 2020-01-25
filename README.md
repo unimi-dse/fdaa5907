@@ -14,6 +14,8 @@ Ethereum was proposed in late 2013 by Vitalik Buterin, a cryptocurrency research
 
 The purpose of this package is to show the stock exchange index of the cryptocurrency Ether.
 It is possible to view:
+  * the real-time value of the index;
+    *it can be updated by a button;
   * the chart (updated daily) of the trend of the index;
   * the chart (updated daily) of the trend of the index with a Moving Average;
   * the forecast of the future trend of the index;
