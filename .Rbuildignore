@@ -1,2 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^ethereum\.Rcheck$
+^ethereum.*\.tar\.gz$
+^ethereum.*\.tgz$

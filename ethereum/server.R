@@ -102,3 +102,5 @@ server <- function(input, output) {
     }
   })
 }
+
+shiny::shinyApp(ui = shinyUI, server = shinyServer)
