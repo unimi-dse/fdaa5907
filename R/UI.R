@@ -6,7 +6,6 @@ ui <- shiny::fluidPage(
   
   shinyjs::useShinyjs(),
   shinyalert::useShinyalert(),
-  shinycssloaders::withSpinner(),
   
   # App title
   shiny::titlePanel("Ethereum (Cryptocurrency) price Index"),
