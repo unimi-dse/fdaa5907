@@ -57,7 +57,7 @@ calculateRange <- function(obs,n){
 
 #' Define the server logic
 #' #'
-server <- function(input, output) {
+shiny::shinyServer(function(input, output) {
   
   p <- getPricePerc()
   eth <- getEth()
@@ -101,7 +101,6 @@ server <- function(input, output) {
       plot(forecast::forecast(forecast::auto.arima(ts1)), sub = paste("Forecast with ",obs," observation"))
     }
   })
-  
-}
+})
 
-shiny::shinyApp(ui = ui, server = server)
+shiny::shinyApp(ui = shinyUI, server = shinyServer)

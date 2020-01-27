@@ -2,7 +2,7 @@
 '%>%'  <- magrittr::`%>%`
 
 # Define UI for app
-ui <- shiny::fluidPage(
+shiny::shinyUI(fluidPage(
   
   shinyjs::useShinyjs(),
   shinyalert::useShinyalert(),
@@ -70,5 +70,5 @@ ui <- shiny::fluidPage(
                 ')
       
   )
-  
+)
 )
