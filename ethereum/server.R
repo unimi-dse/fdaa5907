@@ -101,6 +101,7 @@ server <- function(input, output) {
       plot(forecast::forecast(forecast::auto.arima(ts1)), sub = paste("Forecast with ",obs," observation"))
     }
   })
+  
 }
 
-shiny::shinyApp(ui = shinyUI, server = shinyServer)
+shiny::shinyApp(ui = ui, server = server)
