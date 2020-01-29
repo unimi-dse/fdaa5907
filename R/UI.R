@@ -1,6 +1,4 @@
 
-'%>%'  <- magrittr::`%>%`
-
 # Define UI for app
 ui <- shiny::fluidPage(
   
@@ -33,7 +31,7 @@ ui <- shiny::fluidPage(
   shiny::mainPanel(
       
       # Output: plot
-    shinycssloaders::withSpinner(shiny::plotOutput(outputId = "distPlot"), color="#0dc5c1"),
+    andrewsali/shinycssloaders::withSpinner(shiny::plotOutput(outputId = "distPlot"), color="#0dc5c1"),
     
     shiny::HTML('<style type="text/css">
                   .column {
