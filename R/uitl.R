@@ -1,7 +1,3 @@
-#' @export
-testFun <- function() {
-  print("Yes, it works!")
-}
 
 #' @export
 runFun <- function(){
