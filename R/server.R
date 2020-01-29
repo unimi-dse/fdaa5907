@@ -65,7 +65,7 @@ server <- function(input, output) {
   
   shiny::observe({
     print(input$option)
-    shinyjs::toggleState("slider1", input$option == 3)
+    shinyjs::toggleState(id = "slider1", condition = input$option == 3)
   })
   
   shiny::observeEvent(input$reload, {
