@@ -64,7 +64,7 @@ server <- function(input, output) {
   setOutPricePerc(p@price,p@perc, output)
   
   shiny::observe({
-    shinyjs::toggleState("slider1", input$option == 3)
+    shinyjs::toggle("slider1", input$option == 3)
   })
   
   shiny::observeEvent(input$reload, {
