@@ -1,5 +1,8 @@
 
 # Define UI for app
+#' @import shiny
+#' @import shinydashboard
+#' @import shinyjs
 ui <- shiny::fluidPage(
   
   shinyjs::useShinyjs(),
