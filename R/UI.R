@@ -33,7 +33,7 @@ ui <- shiny::fluidPage(
   shiny::mainPanel(
       
       # Output: plot
-    shiny::plotOutput(outputId = "distPlot")%>%shinycssloaders::withSpinner(color="#0dc5c1"),
+    shinycssloaders::withSpinner(shiny::plotOutput(outputId = "distPlot"), color="#0dc5c1"),
     
     shiny::HTML('<style type="text/css">
                   .column {
