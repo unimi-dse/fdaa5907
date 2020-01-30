@@ -21,11 +21,16 @@ It is possible to view:
   * the forecast of the future trend of the index;
     * in this case it is also possible to choose the number of observations on which to base the forecast.
 
+## Data sources
+
+* [Quanld](https://www.quandl.com) - The premier source for financial, economic, and alternative datasets, serving investment professionals. It is used for getting the daily data for all the charts.
+* [ethereumprice](https://ethereumprice.org/live/) - A website where we get the live value of Ethere with some web scraping.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Installing
+### Installing and run
 
 Install the R package
 
@@ -39,6 +44,12 @@ Load the package
 require(ethereum)
 ```
 
+It is possible to run a Graphical User Interface with the command:
+
+```
+ Graphical User Interface
+```
+
 ### Documentation and Test
 
 
@@ -50,11 +61,12 @@ It's possible to see the documentation (how it works) of the developed functions
 ?getPricePerc()
 ?server()
 ?setOutPricePerc()
+?GUI()
 ```
 
 ## Built With
 
-* [Shiny](https://shiny.rstudio.com/) - The app framework used
+* [Shiny](https://shiny.rstudio.com/) - Shiny is an R package that makes it easy to build interactive web apps straight from R.
 
 
 ## Authors
