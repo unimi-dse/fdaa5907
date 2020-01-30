@@ -4,6 +4,7 @@
 #' @param output The output widget of the UI
 #' @examples
 #' setOutPricePerc("$164,37", "(1,23)", output)
+#' @export
 setOutPricePerc <- function(price,perc, output){
   output$price <- shiny::renderText(price)
   output$percent <- shiny::renderText(perc)

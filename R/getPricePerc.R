@@ -1,6 +1,7 @@
 #' Get actual Price and Percentage of change of Ethereum Index
 #'
 #' @return A class formed by Price and Percentage of change
+#' @export
 getPricePerc <- function(){
   url <- "https://ethereumprice.org/live/"
   webpage <- xml2::read_html(url)

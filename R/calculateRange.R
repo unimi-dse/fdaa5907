@@ -5,6 +5,7 @@
 #' @param n Total number of observation
 #' @examples
 #' calculateRange(300,1367)
+#' @export
 calculateRange <- function(obs,n){
   div <- n/obs
   num <- n/div
