@@ -57,14 +57,13 @@ calculateRange <- function(obs,n){
 
 #' Define the server logic
 #' #'
-server <- function(input, output) {
+server <- function(input, output, session) {
   
   p <- getPricePerc()
   eth <- getEth()
   setOutPricePerc(p@price,p@perc, output)
   
   shiny::observe({
-    print(input$option)
     shinyjs::toggleState(id = "slider1", condition = input$option == 3)
   })
   
