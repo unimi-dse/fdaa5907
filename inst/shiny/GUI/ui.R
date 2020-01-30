@@ -17,7 +17,11 @@ ui <- shiny::fluidPage(
       shiny::h4(shiny::textOutput("percent"))),
     
     shiny::fluidRow(shiny::actionButton("reload", "Reload"),
-                    shiny::h5("Last update: ",shiny::textOutput("hour"))),
+                    shiny::h5("Last update: ",shiny::textOutput("hour")),
+                    shiny::HTML("<h6>
+                                  Source: 
+                                   <a href='https://ethereumprice.org/live/'>ethereumprice.org </a>
+                                </h6>")),
     
     shiny::fluidRow(shiny::selectInput(inputId = "option", shiny::h3("Select option"), 
                                        choices = list("Price" = 1, "Moving Average" = 2,
@@ -32,6 +36,10 @@ ui <- shiny::fluidPage(
     
     # Output: plot
     shinycssloaders::withSpinner(shiny::plotOutput(outputId = "distPlot"), color="#0dc5c1"),
+    shiny::HTML("<h6>
+                Source: 
+                 <a href='https://www.quandl.com'>quandl.com </a>
+              </h6>"),
     
     shiny::HTML('<style type="text/css">
                   .column {
