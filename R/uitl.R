@@ -1,5 +1,4 @@
 #' 
-#' @return shiny app
 #' 
 #' @export
 GUI <- function(){
