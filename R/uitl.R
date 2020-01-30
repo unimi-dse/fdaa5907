@@ -1,6 +1,9 @@
-
+#' 
+#' @return shiny app
+#' 
 #' @export
-runFun <- function(){
-  # run app -----------------------------------------------------------------
-  shiny::runApp( shiny::shinyApp(ui, server), launch.browser = T )
+GUI <- function(){
+  
+  shiny::runApp(system.file("shiny/GUI", package = "sample"))
+  
 }
