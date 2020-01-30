@@ -1,10 +1,3 @@
-#' Get Ethereum index data
-#'
-#' @return The data of all Ehtereum index
-getEth <- function(){
-  return(eth <- Quandl::Quandl("BITFINEX/ETHUSD", api_key="-GNJxjPntak8s-AxpM5o"))
-}
-
 #' Create a class for get the returned value of the function getPricePerc
 setClass(Class="pricePerc",
          representation(
@@ -12,48 +5,6 @@ setClass(Class="pricePerc",
            perc="character"
          )
 )
-
-#' Get actual Price and Percentage of change of Ethereum Index
-#'
-#' @return A class formed by Price and Percentage of change
-getPricePerc <- function(){
-  url <- "https://ethereumprice.org/live/"
-  webpage <- xml2::read_html(url)
-  title_html <- rvest::html_nodes(webpage, "div#coin-price")
-  perc_html <- rvest::html_nodes(webpage, "span#coin-changePercent")
-  perc <- rvest::html_text(perc_html)
-  title <- rvest::html_text(title_html)
-  price <- stringr::str_replace_all(title, "\n","")
-  print("Data retrieved")
-  return(new("pricePerc",price=price,perc=perc))
-}
-
-#' Set the input value in the correct output widget of the UI
-#' @param price Actual price of Ehtereum index
-#' @param perc Actual percentage of change in the Ethereum price index
-#' @param output The output widget of the UI
-#' @examples
-#' setOutPricePerc("$164,37", "(1,23)", output)
-setOutPricePerc <- function(price,perc, output){
-  output$price <- shiny::renderText(price)
-  output$percent <- shiny::renderText(perc)
-  tm <- Sys.time()
-  ts <- format(tm, format = "%Y-%m-%d %H:%M:%S", tz = "", usetz = FALSE)
-  output$hour <- renderText(ts)
-}
-
-#' Calculate the range, given the number of observation, for the forecast
-#' #'
-#' @param obs Selected number of observation
-#' @param n Total number of observation
-#' @examples
-#' calculateRange(300,1367)
-calculateRange <- function(obs,n){
-  div <- n/obs
-  num <- n/div
-  tot <- n-num
-  return(tot)
-}
 
 #' Define the server logic
 #' #'
