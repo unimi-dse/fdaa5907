@@ -47,7 +47,7 @@ require(ethereum)
 It is possible to run a Graphical User Interface with the command:
 
 ```
- Graphical User Interface
+ GUI()
 ```
 
 ### Documentation and Test
