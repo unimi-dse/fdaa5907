@@ -1,4 +1,4 @@
-#' 
+
 #' 
 #' @export
 GUI <- function(){
