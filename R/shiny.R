@@ -1,5 +1,6 @@
 
-#' 
+#' Create a Graphic User Interface
+#'
 #' @export
 GUI <- function(){
   
