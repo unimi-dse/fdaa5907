@@ -17,10 +17,14 @@ server <- function(input, output, session) {
         setOutPricePerc(p@price,p@perc, output)
      },
      error = function(e){ 
-        shinyalert::shinyalert("Error!", "Data not retrived.", type = "error") #Show a pop-up message 
+        shinyalert::shinyalert("Error!", "Data not retrived.", type = "error") #Show a pop-up message
+        eth <- NULL
+        p <- NULL
      },
      warning = function(w){
-        shinyalert::shinyalert("Warning!", "Something goes wrong.", type = "warning") #Show a pop-up message 
+       shinyalert::shinyalert("Warning!", "Something goes wrong.", type = "warning") #Show a pop-up message 
+       eth <- NULL
+       p <- NULL
      }
   )
 
@@ -31,19 +35,23 @@ server <- function(input, output, session) {
   # Reload the data when the user click on a "relaod" button
   shiny::observeEvent(input$reload, {
     tryCatch(
-     expr = {
-      eht <- getEth()
-      p <- getPricePerc()
-      setOutPricePerc(p@price,p@perc,output)
-     },
-      error = function(e){ 
-        shinyalert::shinyalert("Error!", "Data not retrived.", type = "error") #Show a pop-up message 
-      },
-       warning = function(w){
-        shinyalert::shinyalert("Warning!", "Something goes wrong.", type = "warning") #Show a pop-up message 
-       }
-    )
-    shinyalert::shinyalert("Okay!", "Data updated correctly.", type = "success") #Show a pop-up message 
+       expr = {
+          eht <- getEth()
+          p <- getPricePerc()
+          setOutPricePerc(p@price,p@perc,output)
+       },
+        error = function(e){ 
+          shinyalert::shinyalert("Error!", "Data not retrived.", type = "error") #Show a pop-up message 
+          eth <- NULL
+          p <- NULL
+        },
+         warning = function(w){
+           shinyalert::shinyalert("Warning!", "Something goes wrong.", type = "warning") #Show a pop-up message 
+           eth <- NULL
+           p <- NULL
+         }
+      )
+      shinyalert::shinyalert("Okay!", "Data updated correctly.", type = "success") #Show a pop-up message 
   })
   
   output$distPlot <- shiny::renderPlot({
