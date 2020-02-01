@@ -14,7 +14,6 @@ server <- function(input, output, session) {
      expr = {
         p <- getPricePerc()
         eth <- getEth()
-        setOutPricePerc(p@price,p@perc, output)
      },
      error = function(e){ 
         shinyalert::shinyalert("Error!", "Data not retrived.", type = "error") #Show a pop-up message
@@ -27,6 +26,7 @@ server <- function(input, output, session) {
        p <- NULL
      }
   )
+  setOutPricePerc(p@price,p@perc, output)
 
   shiny::observe({
     shinyjs::toggleState(id = "slider1", condition = input$option == 3)
