@@ -10,20 +10,41 @@ setClass(Class="pricePerc",
 #' #'
 server <- function(input, output, session) {
   
-  p <- getPricePerc()
-  eth <- getEth()
-  setOutPricePerc(p@price,p@perc, output)
-  
+         tryCatch(
+             expr = {
+                    p <- getPricePerc()
+                    eth <- getEth()
+                    setOutPricePerc(p@price,p@perc, output)
+             },
+                  error = function(e){ 
+                 shinyalert::shinyalert("Error!", "Data not retrived.", type = "error") #Show a pop-up message 
+             },
+             warning = function(w){
+                 shinyalert::shinyalert("Warning!", "Something goes wrong.", type = "warning") #Show a pop-up message 
+             }
+    )
+
   shiny::observe({
     shinyjs::toggleState(id = "slider1", condition = input$option == 3)
   })
   
+  # Reload the data when the user click on a "relaod" button
   shiny::observeEvent(input$reload, {
+         tryCatch(
+             expr = {
+                      eht <- getEth()
+                      p <- getPricePerc()
+                      setOutPricePerc(p@price,p@perc,output)
+             },
+             error = function(e){ 
+                 shinyalert::shinyalert("Error!", "Data not retrived.", type = "error") #Show a pop-up message 
+             },
+             warning = function(w){
+                 shinyalert::shinyalert("Warning!", "Something goes wrong.", type = "warning") #Show a pop-up message 
+             }
+    )
     
-    eht <- getEth()
-    p <- getPricePerc()
-    setOutPricePerc(p@price,p@perc,output)
-    shinyalert::shinyalert("Okay!", "Data updated correctly.", type = "success")
+    shinyalert::shinyalert("Okay!", "Data updated correctly.", type = "success") #Show a pop-up message 
   })
   
   output$distPlot <- shiny::renderPlot({
@@ -50,6 +71,9 @@ server <- function(input, output, session) {
       start <- calculateRange(obs,end)
       ts1 <- stats::ts(eth$Last[start:end], start = 1, frequency = 1, class = "ts")
       plot(forecast::forecast(forecast::auto.arima(ts1)), sub = paste("Forecast with ",obs," observation"))
+    }
+    esle{
+       shinyalert::shinyalert("Error!", "Input option not defined.", type = "error")
     }
   })
 }
