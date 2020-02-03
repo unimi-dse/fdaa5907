@@ -59,7 +59,6 @@ It's possible to see the documentation (how it works) of the developed functions
 ?getEth()
 ?calculateRange()
 ?getPricePerc()
-?server()
 ?GUI()
 ```
 
