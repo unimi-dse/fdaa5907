@@ -10,6 +10,6 @@ getPricePerc <- function(){
   perc <- rvest::html_text(perc_html)
   title <- rvest::html_text(title_html)
   price <- stringr::str_replace_all(title, "\n","")
-  print("Data retrieved")
+  print("Data retrieved correctly")
   return(new("pricePerc",price=price,perc=perc))
 }
