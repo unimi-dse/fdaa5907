@@ -6,7 +6,7 @@
 setKeyAPI <- function(apikey){
   ethereum.key = apikey
   if(is.null(ethereum.key))
-    return(TRUE)
+    return(FALSE)
   else
     return(TRUE)
 }
