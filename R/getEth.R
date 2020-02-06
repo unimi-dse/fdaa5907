@@ -24,7 +24,3 @@ setKeyAPI <- function(apikey){
   else
    return(TRUE)
 }
-
-
-
-# "-GNJxjPntak8s-AxpM5o"
