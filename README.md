@@ -44,7 +44,19 @@ Load the package
 require(ethereum)
 ```
 
-It is possible to run a Graphical User Interface with the command:
+For getting the data is necessary to set a API key for the Quandl libray. For do it you can go on [Quanld](https://www.quandl.com) website and create a FREE account. If you simply want to test the app you can use the following key: 
+
+```
+"-GNJxjPntak8s-AxpM5o"
+```
+
+The key must be setted with the function setKeyAPI() in this way:
+
+```
+setKeyAPI("-GNJxjPntak8s-AxpM5o")
+```
+
+Now, it is possible to run a Graphical User Interface with the command:
 
 ```
  GUI()

@@ -19,8 +19,9 @@ getEth <- function(){
 #' @export
 setKeyAPI <- function(apikey){
   Sys.setenv("apiKey"=apikey)
-  ethereum.key = apikey
-  if(is.null(ethereum.key))
+  #ethereum.key = apikey
+  key = Sys.getenv("apiKey")
+  if(is.null(key))
    return(FALSE)
   else
    return(TRUE)
