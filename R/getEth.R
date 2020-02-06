@@ -3,7 +3,7 @@
 #' @return The data of all Ehtereum index
 #' @export
 getEth <- function(){
-  key = ethereum.key
+  key = Sys.getenv("apiKey")
   print(key)
   if(is.null(key)){
     stop("No api_key provided")
@@ -18,6 +18,7 @@ getEth <- function(){
 #' @example setKeyAPI("abc123")
 #' @export
 setKeyAPI <- function(apikey){
+  Sys.setenv("apiKey"=apikey)
   ethereum.key = apikey
   if(is.null(ethereum.key))
    return(FALSE)
