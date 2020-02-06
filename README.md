@@ -34,13 +34,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 Install the R package
 
-```
+```R
 devtools::install_github('unimi-dse/fdaa5907')
 ```
 
 Load the package
 
-```
+```R
 require(ethereum)
 ```
 
@@ -52,13 +52,13 @@ For getting the data is necessary to set a API key for the Quandl libray. For do
 
 The key must be setted with the function setKeyAPI() in this way:
 
-```
+```R
 setKeyAPI("-GNJxjPntak8s-AxpM5o")
 ```
 
 Now, it is possible to run a Graphical User Interface with the command:
 
-```
+```R
  GUI()
 ```
 
@@ -67,7 +67,7 @@ Now, it is possible to run a Graphical User Interface with the command:
 
 It's possible to see the documentation (how it works) of the developed functions, by typing:
 
-```
+```R
 ?getEth()
 ?calculateRange()
 ?getPricePerc()
