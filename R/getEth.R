@@ -4,7 +4,6 @@
 #' @export
 getEth <- function(){
   key = Sys.getenv("apiKey")
-  print(key)
   if(is.null(key)){
     stop("No api_key provided")
   }else{
@@ -19,7 +18,6 @@ getEth <- function(){
 #' @export
 setKeyAPI <- function(apikey){
   Sys.setenv("apiKey"=apikey)
-  #ethereum.key = apikey
   key = Sys.getenv("apiKey")
   if(is.null(key))
    return(FALSE)
