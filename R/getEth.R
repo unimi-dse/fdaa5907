@@ -3,7 +3,7 @@
 #' @return The data of all Ehtereum index
 #' @export
 getEth <- function(){
-  key = getOption(ethereum.key)
+  key = ethereum.key
   if(is.null(key)){
     stop("No api_key provided")
   }else{
