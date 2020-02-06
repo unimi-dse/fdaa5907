@@ -32,8 +32,9 @@ server <- function(input, output, session) {
         setOutPricePerc(p@price,p@perc, output)
      },
      error = function(e){ 
-        shinyalert::shinyalert("Error!", "Data not retrived.", type = "error") #Show a pop-up message
-     },
+        shinyalert::shinyalert("Error!", "Data not retrived.", type = "error",
+                               callbackR = function(){shiny::stopApp()}) #Show a pop-up message
+    },
      warning = function(w){
        shinyalert::shinyalert("Warning!", "Something goes wrong.", type = "warning") #Show a pop-up message 
      }
@@ -53,7 +54,8 @@ server <- function(input, output, session) {
           setOutPricePerc(p@price,p@perc,output) #set the data in the output
        },
         error = function(e){ 
-          shinyalert::shinyalert("Error!", "Data not retrived.", type = "error")
+          shinyalert::shinyalert("Error!", "Data not retrived.", type = "error",
+                                 callbackR = function(){shiny::stopApp()})
         },
          warning = function(w){
           shinyalert::shinyalert("Warning!", "Something goes wrong.", type = "warning")
